@@ -13,8 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('holders', function (Blueprint $table) {
+        Schema::create('projects', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('project_owner_id')->constrained('users');
+            $table->string('name');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('holders');
+        Schema::dropIfExists('projects');
     }
 };
