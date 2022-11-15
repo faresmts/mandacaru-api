@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Project;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,10 @@ class BoardFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'id' => fake()->random_int(),
+            'project_id' => Project::factory()->create()->getKey(),
+            'name' => fake()->name(),
+            'description' => fake()->words()
         ];
     }
 }

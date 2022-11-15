@@ -15,6 +15,10 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('board_id')->constrained();
+            $table->foreignId('owner_id')->constrained('users');
+            $table->foreignId('holder_id')->constrained('users');
+            $table->json('viewers_ids')->nullable();
             $table->string('name', 128);
             $table->string('description', 400)->nullable();
             $table->string('type', 64)->nullable();

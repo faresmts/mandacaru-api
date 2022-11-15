@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,12 @@ class ProjectFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'id' => fake()->random_int(),
+            'project_owner_id' => User::factory()->create([
+                'role' => User::ROLE_PROJECT_OWNER
+            ]),
+            'name' => fake()->name(),
+            'description' => fake()->words()
         ];
     }
 }
